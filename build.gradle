@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '2.7.16'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+	id 'org.flywaydb.flyway' version '7.15.0'
 }
 
 group = 'com.isptec'
@@ -9,6 +10,12 @@ version = '0.0.1-SNAPSHOT'
 
 java {
 	sourceCompatibility = '1.8'
+}
+
+flyway {
+	url = 'jdbc:mysql://localhost:3306/psfotos'
+	user = 'root'
+	password = 'password'
 }
 
 repositories {
@@ -20,8 +27,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-hateoas'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'com.dropbox.core:dropbox-core-sdk:5.4.5'
-	implementation 'org.flywaydb:flyway-core'
-	implementation 'org.flywaydb:flyway-mysql'
+//	implementation 'org.flywaydb:flyway-core'
+//	implementation 'org.flywaydb:flyway-mysql'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
