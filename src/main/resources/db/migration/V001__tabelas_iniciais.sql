@@ -10,6 +10,6 @@ create table cliente_amigos(
 create table album(
     id int primary key auto_increment,
     nome varchar(200) not null,
-    catalog_url  varchar(200),
+    catalogo  varchar(200),
     id_cliente int references cliente(id)
 );

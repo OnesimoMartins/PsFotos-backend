@@ -21,7 +21,7 @@ public class AlbumController {
         return "test";
     }
 
-    @PostMapping()
+    @PostMapping
     public Album novoAlbum(@RequestBody AlbumDto dto){
         return albumService.novoAlbum(Album.builder()
                         .cliente(Cliente.builder()

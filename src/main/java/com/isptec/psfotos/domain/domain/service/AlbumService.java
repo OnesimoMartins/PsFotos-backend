@@ -12,6 +12,7 @@ public class AlbumService {
     private final AlbumRepository albumRepository;
 
     public Album novoAlbum(Album album){
+        //TODO: salvar catalogo no dbx
         return albumRepository.save(album);
     }
 }

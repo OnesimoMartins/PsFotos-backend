@@ -1,25 +1,27 @@
 package com.isptec.psfotos.domain.domain.entity;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Getter
 @Setter
 @Builder
+@Entity
+@Table(name = "album")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Album {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
+
     @ManyToOne
+    @JoinColumn(name = "id_cliente")
     private Cliente cliente;
+
     private String catalogo;
 
 }
