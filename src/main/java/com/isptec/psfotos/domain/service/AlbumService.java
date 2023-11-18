@@ -1,7 +1,7 @@
-package com.isptec.psfotos.domain.domain.service;
+package com.isptec.psfotos.domain.service;
 
-import com.isptec.psfotos.domain.domain.entity.Album;
-import com.isptec.psfotos.domain.domain.repository.AlbumRepository;
+import com.isptec.psfotos.domain.entity.Album;
+import com.isptec.psfotos.domain.repository.AlbumRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

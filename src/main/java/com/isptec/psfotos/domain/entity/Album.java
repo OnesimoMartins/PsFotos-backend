@@ -1,4 +1,4 @@
-package com.isptec.psfotos.domain.domain.entity;
+package com.isptec.psfotos.domain.entity;
 
 import lombok.*;
 

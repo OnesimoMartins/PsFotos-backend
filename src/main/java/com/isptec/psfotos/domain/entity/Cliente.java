@@ -1,6 +1,7 @@
-package com.isptec.psfotos.domain.domain.entity;
+package com.isptec.psfotos.domain.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -26,6 +27,8 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
+
+    @JsonIgnore
     private String password;
 
 }
