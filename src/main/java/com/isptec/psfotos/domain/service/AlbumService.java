@@ -10,8 +10,12 @@ import org.springframework.stereotype.Service;
 public class AlbumService {
 
     private final AlbumRepository albumRepository;
+    private final DropBoxService dropBoxService;
 
     public Album novoAlbum(Album album){
+
+
+        dropBoxService
         //TODO: salvar catalogo no dbx
         return albumRepository.save(album);
     }

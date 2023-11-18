@@ -22,4 +22,10 @@ public class ClienteService {
         return clienteRepository.findByEmailAndPassword(c.getEmail(),c.getPassword())
                 .orElseThrow(()->new EntityNotFoundException("Nao encontrado"));
     }
+
+//    public List<Cliente> buscarAmigos(Integer id){
+//
+//        this.clienteRepository.get
+//
+//    }
 }

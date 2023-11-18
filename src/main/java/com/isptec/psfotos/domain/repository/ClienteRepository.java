@@ -2,10 +2,32 @@ package com.isptec.psfotos.domain.repository;
 
 import com.isptec.psfotos.domain.entity.Cliente;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface ClienteRepository extends JpaRepository<Cliente,Integer> {
 
     Optional<Cliente> findByEmailAndPassword(String email,String password );
+
+    @Query(
+            nativeQuery = true,
+            value = "select * from cliente c " +
+                    "inner join cliente_amigos ca on " +
+                    "    ca.cliente= c.id or ca.cliente2= c.id " +
+                    "where (ca.cliente= :id or ca.cliente2= :id) and c.id !=:id"
+    )
+    List<Cliente> findAmigos(@Param("id") Integer id);
+
+
+    @Query(
+            nativeQuery = true,
+            value = "select * from cliente c " +
+                    "inner join cliente_amigos ca on " +
+                    "    ca.cliente= c.id or ca.cliente2= c.id " +
+                    "where (not (ca.cliente= :id or ca.cliente2= :id)) and c.id !=:id"
+    )
+    List<Cliente> findNotAmigos( @Param("id") Integer id);
 }
