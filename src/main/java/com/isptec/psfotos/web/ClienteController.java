@@ -5,6 +5,7 @@ import com.isptec.psfotos.domain.entity.Cliente;
 import com.isptec.psfotos.domain.repository.AlbumRepository;
 import com.isptec.psfotos.domain.service.ClienteService;
 import com.isptec.psfotos.web.dto.ClienteDto;
+import com.isptec.psfotos.web.dto.LoginDto;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,6 +37,17 @@ public class ClienteController {
                         .id(null)
                         .password(dto.getPassword())
                         .nome(dto.getNome())
+                        .email(dto.getEmail())
+                        .build()
+        );
+    }
+
+    @PostMapping("/login")
+    public Cliente login(@RequestBody @Valid LoginDto dto){
+
+        return clienteService.autenticar(
+                Cliente.builder()
+                        .password(dto.getPassword())
                         .email(dto.getEmail())
                         .build()
         );

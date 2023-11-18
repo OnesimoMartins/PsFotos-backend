@@ -5,6 +5,8 @@ import com.isptec.psfotos.domain.repository.ClienteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
+
 
 @Service
 @RequiredArgsConstructor
@@ -14,5 +16,10 @@ public class ClienteService {
 
     public final Cliente criarCliente(Cliente c){
         return clienteRepository.save(c);
+    }
+
+    public final Cliente autenticar(Cliente c){
+        return clienteRepository.findByEmailAndPassword(c.getEmail(),c.getPassword())
+                .orElseThrow(()->new EntityNotFoundException("Nao encontrado"));
     }
 }
