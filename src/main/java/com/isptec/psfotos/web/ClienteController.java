@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,6 +37,11 @@ public class ClienteController {
     @GetMapping("{id}/amigos")
     public List<Cliente> getAmigos(@PathVariable Integer id){
         return clienteRepository.findAmigos(id);
+    }
+
+    @PutMapping("{id1}/conectar/{id2}")
+    public Boolean conectarAmigos(@PathVariable Integer id1,@PathVariable Integer id2){
+        return clienteService.conectarAmigos(id1,id2);
     }
 
     @GetMapping("{id}/nao-amigos")

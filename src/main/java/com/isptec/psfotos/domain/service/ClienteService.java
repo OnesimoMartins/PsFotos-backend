@@ -5,7 +5,9 @@ import com.isptec.psfotos.domain.repository.ClienteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
+import javax.persistence.EntityManager;
+import java.util.Objects;
+import java.util.Optional;
 
 
 @Service
@@ -13,6 +15,7 @@ import javax.persistence.EntityNotFoundException;
 public class ClienteService {
 
     private final ClienteRepository clienteRepository;
+    private final EntityManager entityManager;
 
     public final Cliente criarCliente(Cliente c){
         return clienteRepository.save(c);
@@ -20,12 +23,23 @@ public class ClienteService {
 
     public final Cliente autenticar(Cliente c){
         return clienteRepository.findByEmailAndPassword(c.getEmail(),c.getPassword())
-                .orElseThrow(()->new EntityNotFoundException("Nao encontrado"));
+                .orElse(null);
     }
 
-//    public List<Cliente> buscarAmigos(Integer id){
-//
-//        this.clienteRepository.get
-//
-//    }
+    public final Boolean conectarAmigos(Integer id1, Integer id2){
+       Optional<Cliente> c = clienteRepository.findAmigos(id1)
+               .stream().filter(it->
+                       Objects.equals(it.getId(),id2)
+                   ).findFirst();
+
+       if (c.isPresent()) return false;
+
+       String sql = String.format(
+               "insert into cliente_amigos(cliente,cliente2) values (%s,%s);",
+               id1,id2
+       );
+       int rows = entityManager.createQuery(sql).executeUpdate();
+        return rows > 0;
+    }
+
 }

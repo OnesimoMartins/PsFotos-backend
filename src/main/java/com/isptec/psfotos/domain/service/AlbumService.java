@@ -15,7 +15,9 @@ public class AlbumService {
     public Album novoAlbum(Album album){
 
 
-        dropBoxService
+       String path = dropBoxService.salvarNovoTxt();
+       album.setCatalogo(path);
+//        dropBoxService
         //TODO: salvar catalogo no dbx
         return albumRepository.save(album);
     }
