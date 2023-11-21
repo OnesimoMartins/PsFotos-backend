@@ -31,7 +31,8 @@ public class AlbumController {
                 Album.builder()
                         .cliente(Cliente.builder()
                                 .id(dto.getIdCliente())
-                                .build())
+                                .build()
+                        )
                         .nome(dto.getNomeAlbum())
                 .build()
         );

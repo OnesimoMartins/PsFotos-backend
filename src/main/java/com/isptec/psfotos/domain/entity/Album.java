@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Builder
 @Entity
 @Table(name = "album")
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class Album {

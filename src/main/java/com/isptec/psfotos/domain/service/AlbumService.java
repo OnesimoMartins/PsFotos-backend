@@ -8,17 +8,12 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class AlbumService {
-
     private final AlbumRepository albumRepository;
     private final DropBoxService dropBoxService;
 
     public Album novoAlbum(Album album){
-
-
-       String path = dropBoxService.salvarNovoTxt();
-       album.setCatalogo(path);
-//        dropBoxService
-        //TODO: salvar catalogo no dbx
+        System.out.println(album);
+        album.setCatalogo(dropBoxService.criarNovoCatalogo());
         return albumRepository.save(album);
     }
 }
