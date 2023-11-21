@@ -12,7 +12,6 @@ public class AlbumService {
     private final DropBoxService dropBoxService;
 
     public Album novoAlbum(Album album){
-        System.out.println(album);
         album.setCatalogo(dropBoxService.criarNovoCatalogo());
         return albumRepository.save(album);
     }

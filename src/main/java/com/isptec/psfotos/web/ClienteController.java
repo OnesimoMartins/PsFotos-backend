@@ -29,7 +29,7 @@ public class ClienteController {
     private final ClienteRepository clienteRepository;
 
     @GetMapping("{id}/albums")
-    public List<Album> getClienteAlbuns(Integer id){
+    public List<Album> getClienteAlbuns(@PathVariable Integer id){
         return albumRepository.findAlbumByClienteId(id);
     }
 

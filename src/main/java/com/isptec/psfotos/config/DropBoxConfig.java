@@ -23,6 +23,8 @@ public class DropBoxConfig {
     @Bean
     public DbxClientV2 dropBoxClientBean(){
         DbxRequestConfig config = DbxRequestConfig.newBuilder("psfotos").build();
+
+//        config.
         return new DbxClientV2(config, dbxAccessToken);
     }
 
