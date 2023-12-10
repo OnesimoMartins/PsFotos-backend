@@ -8,6 +8,7 @@ import com.isptec.psfotos.domain.service.ClienteService;
 import com.isptec.psfotos.web.dto.ClienteDto;
 import com.isptec.psfotos.web.dto.LoginDto;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,16 +51,21 @@ public class ClienteController {
     }
 
     @PostMapping
-    public Cliente criarCliente(@RequestBody @Valid ClienteDto dto){
+    public ResponseEntity<?> criarCliente(@RequestBody @Valid ClienteDto dto){
 
-        return clienteService.criarCliente(
-                Cliente.builder()
-                        .id(null)
-                        .password(dto.getPassword())
-                        .nome(dto.getNome())
-                        .email(dto.getEmail())
-                        .build()
-        );
+        try {
+
+            return ResponseEntity.ok().body(clienteService.criarCliente(
+                    Cliente.builder()
+                            .id(null)
+                            .password(dto.getPassword())
+                            .nome(dto.getNome())
+                            .email(dto.getEmail())
+                            .build())
+            );
+        }catch (RuntimeException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @PostMapping("/login")

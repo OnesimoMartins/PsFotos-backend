@@ -11,6 +11,7 @@ import java.util.Optional;
 public interface ClienteRepository extends JpaRepository<Cliente,Integer> {
 
     Optional<Cliente> findByEmailAndPassword(String email,String password );
+    Optional<Cliente> findByEmail(String email);
 
     @Query(
             nativeQuery = true,

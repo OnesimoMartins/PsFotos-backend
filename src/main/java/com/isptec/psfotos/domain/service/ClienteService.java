@@ -18,11 +18,14 @@ public class ClienteService {
     private final ClienteRepository clienteRepository;
     private final EntityManager entityManager;
 
-    public final Cliente criarCliente(Cliente c){
+    public Cliente criarCliente(Cliente c){
+        clienteRepository.findByEmail(c.getEmail()).ifPresent((cliente)->{
+            throw new RuntimeException("Email ja Existente");
+        });
         return clienteRepository.save(c);
     }
 
-    public final Cliente autenticar(Cliente c){
+    public Cliente autenticar(Cliente c){
         return clienteRepository.findByEmailAndPassword(c.getEmail(),c.getPassword())
                 .orElse(null);
     }
