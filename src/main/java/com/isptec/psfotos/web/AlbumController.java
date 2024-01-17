@@ -33,6 +33,12 @@ public class AlbumController {
         System.out.println("testeee");
         return true;
     }
+    @PutMapping("{id}/amigos/{idAmigo}")
+    public Album relacionarAmigo(@PathVariable Integer id,
+                                   @PathVariable Integer idAmigo){
+//        this.albumService.
+        return albumService.adicionarAmigo(id,idAmigo);
+    }
 
     @PostMapping
     public Album novoAlbum(@RequestBody AlbumDto dto){

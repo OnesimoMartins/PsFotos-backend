@@ -4,6 +4,11 @@ services:
     image: mysql:5.7
     container_name: mysql
     restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 500M
     environment:
       MYSQL_DATABASE: 'db'
       MYSQL_USER: 'user'
